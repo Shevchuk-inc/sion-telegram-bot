@@ -2,6 +2,8 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { Telegraf } from 'telegraf';
 import { createWebhookRouter } from './routes/webhook.routes';
+import { authRouter } from './routes/auth.routes';
+import { userRouter } from './routes/user.routes';
 
 export const createApp = (bot: Telegraf): Application => {
   const app = express();
@@ -14,6 +16,8 @@ export const createApp = (bot: Telegraf): Application => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
+  app.use('/api/auth', authRouter);
+  app.use('/api/users', userRouter);
   app.use('/api/webhook', createWebhookRouter(bot));
 
   return app;

@@ -1,12 +1,14 @@
 import { config, validateConfig } from './config';
 import { createApp } from './app';
 import { connectDatabase } from './services/database.service';
+import { seedAdmin } from './services/seed.service';
 import { createBot, startBot } from './bot';
 
 validateConfig();
 
 const start = async (): Promise<void> => {
   await connectDatabase();
+  await seedAdmin();
 
   const bot = createBot();
   startBot(bot);

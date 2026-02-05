@@ -1,6 +1,7 @@
 import { Telegraf } from 'telegraf';
 import { config } from '../config';
 import { chatRestriction } from './middlewares/chatRestriction';
+import { userCheck } from './middlewares/userCheck';
 import {
   startCommand,
   helpCommand,
@@ -20,6 +21,7 @@ export const createBot = (): Telegraf => {
   const bot = new Telegraf(config.telegram.botToken);
 
   bot.use(chatRestriction);
+  bot.use(userCheck);
 
   bot.command('start', startCommand);
   bot.command('help', helpCommand);
