@@ -11,7 +11,7 @@ const start = async (): Promise<void> => {
   const bot = createBot();
   startBot(bot);
 
-  const app = createApp();
+  const app = createApp(bot);
 
   app.listen(config.server.port, () => {
     console.log(`Server running in ${config.server.nodeEnv} mode on port ${config.server.port}`);
