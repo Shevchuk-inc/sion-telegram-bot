@@ -1,7 +1,7 @@
 import { Telegraf } from 'telegraf';
 import { config } from '../config';
 import { chatRestriction } from './middlewares/chatRestriction';
-import { startCommand, helpCommand } from './commands';
+import { startCommand, helpCommand, registerDomainCommand } from './commands';
 
 export const createBot = (): Telegraf => {
   if (!config.telegram.botToken) {
@@ -14,6 +14,7 @@ export const createBot = (): Telegraf => {
 
   bot.command('start', startCommand);
   bot.command('help', helpCommand);
+  bot.command('register_domain', registerDomainCommand);
 
   bot.catch((err, ctx) => {
     console.error(`Bot error for ${ctx.updateType}:`, err);
