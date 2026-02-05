@@ -9,7 +9,7 @@ const start = async (): Promise<void> => {
   await connectDatabase();
 
   const bot = createBot();
-  await startBot(bot);
+  startBot(bot);
 
   const app = createApp();
 
