@@ -4,6 +4,8 @@ import { Telegraf } from 'telegraf';
 import { createWebhookRouter } from './routes/webhook.routes';
 import { authRouter } from './routes/auth.routes';
 import { userRouter } from './routes/user.routes';
+import { domainRouter } from './routes/domain.routes';
+import { errorHandler, notFoundHandler } from './middlewares/error.middleware';
 
 export const createApp = (bot: Telegraf): Application => {
   const app = express();
@@ -18,7 +20,11 @@ export const createApp = (bot: Telegraf): Application => {
 
   app.use('/api/auth', authRouter);
   app.use('/api/users', userRouter);
+  app.use('/api/domains', domainRouter);
   app.use('/api/webhook', createWebhookRouter(bot));
+
+  app.use(notFoundHandler);
+  app.use(errorHandler);
 
   return app;
 };

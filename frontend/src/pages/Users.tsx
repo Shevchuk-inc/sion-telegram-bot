@@ -19,7 +19,8 @@ import {
   Alert,
 } from '@mui/material';
 import { Delete, Add } from '@mui/icons-material';
-import { usersApi, User } from '../services/api';
+import { usersApi } from '../services/api';
+import type { User } from '../types';
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
@@ -43,7 +44,7 @@ export default function Users() {
 
   const handleToggle = async (user: User) => {
     try {
-      await usersApi.update(user._id, !user.isAllowed);
+      await usersApi.update(user._id, { isAllowed: !user.isAllowed });
       fetchUsers();
     } catch {
       setError('Failed to update user');
@@ -62,7 +63,7 @@ export default function Users() {
 
   const handleCreate = async () => {
     try {
-      await usersApi.create({ telegramId, username });
+      await usersApi.create({ telegramId: parseInt(telegramId, 10), username });
       setOpen(false);
       setTelegramId('');
       setUsername('');

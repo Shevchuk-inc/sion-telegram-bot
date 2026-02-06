@@ -12,7 +12,7 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
-import { Dashboard, People, Logout } from '@mui/icons-material';
+import { Dashboard, People, Logout, Dns } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -20,7 +20,8 @@ const drawerWidth = 240;
 
 const menuItems = [
   { text: 'Dashboard', icon: <Dashboard />, path: '/' },
-  { text: 'Users', icon: <People />, path: '/users' },
+  { text: 'Домени', icon: <Dns />, path: '/domains' },
+  { text: 'Користувачі', icon: <People />, path: '/users' },
 ];
 
 export default function Layout({ children }: { children: ReactNode }) {

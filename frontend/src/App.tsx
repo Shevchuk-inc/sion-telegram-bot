@@ -3,6 +3,8 @@ import { useAuth } from './contexts/AuthContext';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Users from './pages/Users';
+import Domains from './pages/Domains';
+import DomainDNS from './pages/DomainDNS';
 import Layout from './components/Layout';
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/domains" element={<Domains />} />
+        <Route path="/domains/:id" element={<DomainDNS />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>
