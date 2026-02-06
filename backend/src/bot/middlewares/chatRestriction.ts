@@ -10,7 +10,6 @@ export const chatRestriction: MiddlewareFn<Context> = async (ctx, next) => {
   }
 
   if (chatId !== allowedChatId) {
-    console.log(`Blocked message from unauthorized chat: ${chatId}`);
     return;
   }
 
